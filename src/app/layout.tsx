@@ -1,0 +1,42 @@
+import type { Metadata } from "next";
+import { Geist, Geist_Mono } from "next/font/google";
+import "./globals.css";
+import Navbar from "@/components/Navbar";
+import Footer from "@/components/Footer";
+import ChatAssistant from "@/components/Chat/ChatAssistant";
+
+const geistSans = Geist({
+  variable: "--font-geist-sans",
+  subsets: ["latin"],
+});
+
+const geistMono = Geist_Mono({
+  variable: "--font-geist-mono",
+  subsets: ["latin"],
+});
+
+export const metadata: Metadata = {
+  title: "VoterVani AI - Your Personal Election Educator",
+  description: "A smart, interactive assistant for Indian election process education. Learn, register, and prepare for polling day.",
+};
+
+export default function RootLayout({
+  children,
+}: Readonly<{
+  children: React.ReactNode;
+}>) {
+  return (
+    <html lang="en" className="scroll-smooth">
+      <body
+        className={`${geistSans.variable} ${geistMono.variable} antialiased min-h-screen flex flex-col`}
+      >
+        <Navbar />
+        <main className="flex-grow">
+          {children}
+        </main>
+        <Footer />
+        <ChatAssistant />
+      </body>
+    </html>
+  );
+}
