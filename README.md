@@ -1,65 +1,89 @@
 # VoterVani AI 🗳️
 
-VoterVani AI is a production-ready, smart, and interactive Election Process Education Assistant focused on the Indian Lok Sabha and State Assembly elections. It aims to empower citizens by reducing voter confusion and encouraging informed participation through personalized guidance and AI-driven intelligence.
+> **Empowering Indian Citizens through AI-Driven Electoral Literacy**
+
+**[🌐 Live Demo](https://votervani-ai-817039645342.us-central1.run.app/)**
+
+![VoterVani AI Homepage](./public/homepage.png)
+
+VoterVani AI is a production-ready, interactive Election Process Education Assistant focused on the Indian Lok Sabha and State Assembly elections. It reduces voter confusion and encourages informed participation through personalized guidance and Gemini-powered intelligence.
 
 ## 🌟 Key Features
 
-- **Onboarding Wizard**: A personalized multi-step journey that collects user demographics and voter status to tailor the educational experience.
-- **Smart Branching Logic**: Custom content paths for:
-  - **Future Voters (Under 18)**: Educational preparation and registration timelines.
-  - **Unregistered Citizens**: Step-by-step registration guides (Form 6) and official links.
-  - **Registered Voters**: Polling day preparation, checklist management, and booth finders.
-- **Interactive Election Timeline**: A visual 9-phase breakdown of the Indian election process (Announcement to Results).
-- **Gemini-Powered Chat Assistant**: A non-partisan, neutral conversational agent built on Google Gemini 1.5 Flash to answer electoral queries. Supports **Markdown formatting** for clear, structured responses.
-- **Educational Checklist**: Dynamic "My Election Checklist" with an option to **export as PDF** for offline use.
-- **Knowledge Quiz**: Interactive MCQ module with 10 questions to test and improve electoral literacy.
-- **Polling Day Helper**: Approximate polling booth locator using Google Maps integration and essential "Do's and Don'ts".
+- **🎯 Smart Onboarding Wizard**: Personalized user journey that adapts based on age, location, and registration status.
+- **🛣️ Interactive Election Timeline**: A visual breakdown of the 9 phases of the Indian electoral process.
+- **🤖 Gemini-Powered Assistant**: A neutral, factual conversational agent providing instant answers to electoral queries.
+- **✅ Dynamic Election Checklist**: Personalized preparation steps with **PDF export** capability.
+- **🧠 Knowledge Quiz**: Gamified learning module to test and improve electoral literacy.
+- **📍 Polling Day Helper**: Booth locator (mock integration) and essential voting day guidelines.
 
 ## 🛠️ Tech Stack
 
 - **Framework**: [Next.js 16+](https://nextjs.org/) (App Router, TypeScript)
-- **Styling**: [Tailwind CSS v4](https://tailwindcss.com/) (Mobile-first, Tricolor Accents: Saffron #FF9933, Green #138808)
-- **AI Intelligence**: [Google Gemini 1.5 Flash](https://ai.google.dev/) (via `@google/generative-ai`)
-- **Icons**: [Lucide React](https://lucide.dev/)
+- **AI**: [Google Gemini 1.5 Flash](https://ai.google.dev/) (Server-side integration via `@google/generative-ai`)
+- **Styling**: [Tailwind CSS v4](https://tailwindcss.com/) (Tricolor theme: Saffron, Ashoka Blue, Green)
+- **Testing**: [Vitest](https://vitest.dev/) (Unit/Integration) & [Playwright](https://playwright.dev/) (E2E)
 - **Animations**: [Framer Motion](https://www.framer.com/motion/)
+- **Icons**: [Lucide React](https://lucide.dev/)
 - **PDF Generation**: [jsPDF](https://github.com/parallax/jsPDF)
-- **Maps**: Google Maps Embed API
 
 ## 🚀 Getting Started
 
-### Prerequisites
-- Node.js 18+
-- npm or yarn
-- Google AI Studio API Key (Gemini)
+1. **Clone the repository**:
+   ```bash
+   git clone <repository-url>
+   cd votervani-ai
+   ```
 
-### Installation
-1. Clone the repository
-2. Install dependencies:
+2. **Install dependencies**:
    ```bash
    npm install
    ```
-3. Create a `.env.local` file in the root and add your Gemini API Key:
+
+3. **Set up environment variables**:
+   Create a `.env.local` file with:
    ```env
-   NEXT_PUBLIC_GEMINI_API_KEY=your_api_key_here
+   GEMINI_API_KEY=your_api_key_here
    ```
-4. Run the development server:
+
+4. **Run the development server**:
    ```bash
    npm run dev
    ```
-5. Open [http://localhost:3000](http://localhost:3000) in your browser.
+
+## 🧪 Testing
+
+The project includes a comprehensive testing suite:
+
+- **Unit/Integration Tests**: Run using Vitest.
+  ```bash
+  npm run test
+  ```
+- **End-to-End Tests**: Run using Playwright.
+  ```bash
+  npm run test:e2e
+  ```
+
+## 📦 Deployment
+
+This project is optimized for **Google Cloud Run**.
+
+1. Build the production image:
+   ```bash
+   gcloud builds submit --tag gcr.io/[PROJECT_ID]/votervani-ai
+   ```
+2. Deploy to Cloud Run:
+   ```bash
+   gcloud run deploy votervani-ai --image gcr.io/[PROJECT_ID]/votervani-ai --platform managed
+   ```
 
 ## 📖 Approach & Logic
 
 VoterVani AI uses a **context-aware branching engine**. Based on the initial onboarding data:
-1. **Age Check**: Users under 18 are routed to the "Future Voter" module.
-2. **Registration Check**: Users who aren't registered receive a high-priority "Registration Path" focusing on Form 6 and NVSP portal guidance.
-3. **Task Automation**: The "My Checklist" and "Polling Helper" components dynamically adjust based on the user's election type (Lok Sabha vs. State Assembly).
-
-## ⚠️ Assumptions & Limitations
-- **Educational Focus**: This is a tool for education and guidance; it does not perform real-time voter registration or show live election results.
-- **Public Data**: Process information is based on publicly available ECI guidelines as of 2024-2025.
-- **Official Verification**: Users are always encouraged to verify final dates and booth locations on the official [voters.eci.gov.in](https://voters.eci.gov.in) portal.
-- **Maps**: The polling helper provides approximate locations based on pincode search.
+- **Under 18**: Focuses on future voter education and registration timelines.
+- **Unregistered**: Provides direct links to Form 6 and registration guides.
+- **Registered**: Focuses on booth location, ID requirements, and the voting process.
 
 ---
-*Developed for the Election Commission of India educational awareness initiative (Mock Project).*
+
+*Note: This project is an educational tool and is not officially affiliated with the Election Commission of India. Always refer to [eci.gov.in](https://eci.gov.in) for official directives.*
